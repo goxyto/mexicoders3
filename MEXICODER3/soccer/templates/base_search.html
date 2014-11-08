@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block extra_head %}
+    <script type="text/javascript">
+        function search() {
+            {{ model }}_name = document.getElementById("{{ model }}_name").value;
+            document.getElementById("{{ model }}_name").value = "";
+            window.location = "?{{ model }}="+{{ model }}_name;
+        }
+    </script>
+{% endblock %}
+{% block content %}
+Search for {{ model }}: <input type="text" id="{{ model }}_name" name="{{ model }}_name" value="">
+<input type="button" value="Search" onclick="search()">
+    {% block extra_content %}
+    {% endblock %}
+{% endblock %}

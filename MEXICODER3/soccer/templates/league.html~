@@ -1,0 +1,23 @@
+{% extends "base_search.html" %}
+{% block extra_content %}
+<table>
+    <thead>
+        <tr>
+            <th>League</th>
+            <th>Edition</th>
+            <th>Begin</th>
+            <th>End</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for league in leagues %}
+        <tr>
+            <td>{{ league.name }}</td>
+            <td>{{ league.edition }}</td>
+            <td>{{ league.start_date }}</td>
+            <td>{% if league.end_date %}{{ league.end_date }}{% else %}Not finished{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base_search.html" %}
+{% block extra_content %}
+{% if clubs %}
+<table>
+    <thead>
+        <tr>
+            <th>Club</th>
+            <th>Coach</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for club in clubs %}
+        <tr>
+            <td>{{ club.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h2>No clubs found</h2>
+{% endif %}
+{% endblock %}

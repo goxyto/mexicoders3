@@ -1,0 +1,45 @@
+{% extends "base_search.html" %}
+{% block extra_content %}
+{% if players %}
+<table>
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Country</th>
+            <th>Rating</th>
+            <th>Foot</th>
+            <th>Pace</th>
+            <th>Shooting</th>
+            <th>Passing</th>
+            <th>Dribbling</th>
+            <th>Defending</th>
+            <th>Heading</th>
+            <th>Height</th>
+            <th>Age</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.full_name }}</td>
+            <td>{{ player.country }}</td>
+            <td>{{ player.rating }}</td>
+            <td>{{ player.foot_display }}</td>
+            <td>{{ player.pace }}</td>
+            <td>{{ player.shooting }}</td>
+            <td>{{ player.passing }}</td>
+            <td>{{ player.dribbling }}</td>
+            <td>{{ player.defending }}</td>
+            <td>{{ player.heading }}</td>
+            <td>{{ player.height }}</td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.position_display }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h2>No players found</h2>
+{% endif %}
+{% endblock %}

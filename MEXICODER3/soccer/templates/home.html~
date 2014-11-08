@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<p>Welcome to our mexicoder soccer test, check or menu</p>
+<ul>
+    {% for option in options %}
+    <li><a href="{{ option.0 }}">{{ option.1 }}</a></li>
+</ul>
+{% endblock %}

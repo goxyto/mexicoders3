@@ -1,0 +1,78 @@
+from django.db.models import Q
+from django.shortcuts import render, render_to_response
+from django.views.generic import View
+from models import *
+
+class MainView(View):
+    template_name = 'home.html'
+
+    def get(self, request):
+        # <view logic>
+        options = (
+            ("leagues", "Leagues"),
+            ("clubs", "Clubs"),
+            ("players", "Players"),
+        )
+        return render(request, self.template_name, {
+            "title": "Home",
+            "options": options
+        })
+
+class MyView(View):
+
+    def search_by_name(self, name):
+        return self.model.objects.filter(name__contains=name)
+
+class LeagueView(MyView):
+    template_name = 'league.html'
+    title = "Leagues"
+    model = League
+
+    def get(self, request):
+        league_name = request.GET.get("league")
+        if league_name:
+            leagues = self.search_by_name(league_name)
+        else:
+            leagues = self.model.objects.all()
+        return render(request, self.template_name, {
+            "title": self.title,
+            "leagues": leagues,
+            "model": self.model.__name__.lower()
+        })
+
+class ClubView(MyView):
+    template_name = 'club.html'
+    title = "Clubs"
+    model = Club
+
+    def get(self, request):
+        club_name = request.GET.get("club")
+        if club_name:
+            clubs = self.search_by_name(club_name)
+        else:
+            clubs = self.model.objects.all()
+        return render(request, self.template_name, {
+            "title": self.title,
+            "clubs": clubs,
+            "model": self.model.__name__.lower()
+        })
+
+class PlayerView(View):
+    template_name = 'player.html'
+    title = "player"
+    model = Player
+
+    def search(self, player_name):
+        return self.model.objects.filter(first_name__contains=player_name) + self.model.objects.filter(last_name__contains=player_name)
+
+    def get(self, request):
+        player_name = request.GET.get("player")
+        if player_name:
+            players = self.search(player_name)
+        else:
+            players = self.model.objects.all()
+        return render(request, self.template_name, {
+            "title": self.title,
+            "players": players,
+            "model": self.model.__name__.lower()
+        })

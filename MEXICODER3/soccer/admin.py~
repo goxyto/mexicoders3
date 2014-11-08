@@ -1,0 +1,23 @@
+from django.contrib import admin
+from models import League, Club, Coach, Player
+
+class LeagueAdmin(admin.ModelAdmin):
+    pass
+    #TODO: add code
+
+class ClubAdmin(admin.ModelAdmin):
+    pass
+    #TODO: add code
+
+class CoachAdmin(admin.ModelAdmin):
+    pass
+    #TODO: add code
+
+class PlayerAdmin(admin.ModelAdmin):
+    pass
+    #TODO: add code
+
+admin.site.register(LeagueAdmin, League)
+admin.site.register(ClubAdmin, Club)
+admin.site.register(CoachAdmin, Coach)
+admin.site.register(PlayerAdmin, Player)

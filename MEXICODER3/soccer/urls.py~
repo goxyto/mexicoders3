@@ -1,0 +1,10 @@
+from django.conf import settings
+from django.conf.urls import patterns, include, url
+from views import *
+
+urlpatterns = patterns('',
+    url(r'^$', MainView.as_view()),
+    url(r'^leagues/$', LeagueView.index),
+    url(r'^clubs/$', ClubView.index),
+    url(r'^players/$', PlayerView.index),
+)
